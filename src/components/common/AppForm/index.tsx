@@ -4,6 +4,7 @@ import { useProducts } from '@/contexts/useProducts';
 import { useRouter } from 'next/router';
 import { isImage } from '@/shared/utils';
 import { useToast } from '@/contexts/useToast';
+import { ToastType } from '../AppToast/types';
 
 export function AppForm() {
     const [name, setName] = useState<string>('');
@@ -28,13 +29,18 @@ export function AppForm() {
 
     const handleSave = () => {
         if (name === '' || !isImage(imgUrl)) {
-            showToast(
-                'İlan Kaydedilemedi. Lüften Bilgilerinizi Kontrol Ediniz.',
-                true
-            );
+            showToast({
+                message:
+                    'İlan Kaydedilemedi. Lüften Bilgilerinizi Kontrol Ediniz.',
+                type: ToastType.ERROR,
+            });
             return;
         }
-        showToast('İlan Kaydedildi. Anasayfaya Yönlendirildiniz.', false);
+        showToast({
+            message:
+                'İlan başarıyla kaydedilmiştir. Ana sayfaya yönlendiriliyorsunuz',
+            type: ToastType.SUCCESS,
+        });
         addProduct({ name: name, imgUrl: imgUrl, isUrgent: isUrgent });
         router.push('/');
     };

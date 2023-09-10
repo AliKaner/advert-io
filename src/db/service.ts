@@ -1,17 +1,18 @@
 import { StorageService } from '@/db/db';
 import { ProductType } from '@/shared/types';
 
-export type SortType = 'like' | 'date';
+export enum SortType {
+    LESS_LIKE = 'lessLike',
+    MOST_LIKE = 'mostLike',
+    MOST_DATE = 'mostDate',
+    LESS_DATE ='lessDate',
+}
 
 function generateUniqueID() {
     return Date.now();
 }
 
-const findProducts = async (
-    page: number,
-    itemPerPage: number,
-    sortBy: SortType
-) => {
+const findProducts = (page: number, itemPerPage: number, sortBy: SortType) => {
     const data = StorageService.get();
 
     return {
@@ -20,15 +21,18 @@ const findProducts = async (
                 const aUpdatedAt = new Date(a.updatedAt).getTime();
                 const bUpdatedAt = new Date(b.updatedAt).getTime();
 
-                if (sortBy === 'date') {
-                    return bUpdatedAt - aUpdatedAt;
+                switch(sortBy) {
+                    case 'lessLike':
+                        return a.likes - b.likes;
+                    case 'mostDate':
+                        return bUpdatedAt - aUpdatedAt;
+                    case 'mostLike':
+                        return b.likes - a.likes;
+                    case 'lessDate':
+                        return aUpdatedAt - bUpdatedAt;
+                    default:
+                        return 0;
                 }
-
-                if (a.likes === b.likes) {
-                    return bUpdatedAt - aUpdatedAt;
-                }
-
-                return b.likes - a.likes;
             })
             .slice((page - 1) * itemPerPage, page * itemPerPage),
         totalProducts: data.length,

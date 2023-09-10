@@ -3,6 +3,13 @@ import { DatabaseService, SortType } from '@/db/service';
 import { ProductType } from '@/shared/types';
 import { useRouter } from 'next/router';
 import { ITEM_PER_PAGE } from '@/shared/constants';
+import { useToast } from './useToast';
+import { ToastType } from '@/components/common/AppToast/types';
+
+type GetProductsReturnType = {
+    product: ProductType[];
+    totalProducts: number;
+};
 
 type ProductContextType = {
     products: ProductType[];
@@ -14,9 +21,14 @@ type ProductContextType = {
     }) => void;
     deleteProduct: (id: number) => void;
     likeProduct: (id: number) => void;
-    getProducts: (page: number, sortBy: SortType, itemPerPage?: number) => void;
+    getProducts: (
+        page: number,
+        sortBy: SortType,
+        itemPerPage?: number
+    ) => GetProductsReturnType | undefined;
     currentPage: number;
     selectedSort: SortType;
+    isLoading:boolean;
 };
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
@@ -29,11 +41,13 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
     children,
 }) => {
     const { push } = useRouter();
+    const { showToast } = useToast();
 
     const [products, setProducts] = useState<ProductType[]>([]);
     const [totalItems, setTotalItems] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [selectedSort, setSelectedSort] = useState<SortType>('like');
+    const [selectedSort, setSelectedSort] = useState<SortType>(SortType.MOST_DATE);
+    const [isLoading, setIsLoading] = useState(true);
 
     const addProduct = async (addData: {
         name: string;
@@ -77,6 +91,10 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
                 const previousPage = currentPage - 1;
                 const newPage = previousPage < 1 ? 1 : previousPage;
 
+                showToast({
+                    message: 'Ürün başarı ile silindi.',
+                    type: ToastType.SUCCESS,
+                });
                 await getProducts(newPage, selectedSort);
                 void push(`/page/${newPage}`);
             }
@@ -85,13 +103,13 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
         }
     };
 
-    const getProducts = async (
+    const getProducts = (
         page: number,
         sortBy: SortType,
         itemPerPage: number = ITEM_PER_PAGE
     ) => {
         try {
-            const productsResult = await DatabaseService.product.find(
+            const productsResult = DatabaseService.product.find(
                 page,
                 itemPerPage,
                 sortBy
@@ -101,6 +119,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
             setTotalItems(productsResult.totalProducts);
             setCurrentPage(page);
             setSelectedSort(sortBy);
+            setIsLoading(false);
 
             return productsResult;
         } catch (error) {
@@ -109,6 +128,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
     };
 
     const productContextValue: ProductContextType = {
+        isLoading,
         products,
         totalItems,
         addProduct,

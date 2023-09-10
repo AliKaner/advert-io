@@ -5,17 +5,25 @@ import { SortType } from '@/db/service';
 
 const optionsMap = [
     {
-        value: 'like',
-        label: 'Sırala (Favori Sayısı)',
+        value: SortType.MOST_DATE,
+        label: 'Sırala (Son Eklenen)',
     },
     {
-        value: 'date',
-        label: 'Sırala (Son Eklenen)',
+        value: SortType.LESS_DATE,
+        label: 'Sırala (İlk Eklenen)',
+    },
+    {
+        value: SortType.MOST_LIKE,
+        label: 'Sırala (En Çok Favori Sayısı)',
+    },
+    {
+        value: SortType.LESS_LIKE,
+        label: 'Sırala (En Az Favori Sayısı)',
     },
 ] as const;
 
 export function AppFilter({ onSelect }: AppFilterProps) {
-    const [selectedOption, setSelectedOption] = useState<SortType | null>(null);
+    const [selectedOption, setSelectedOption] = useState<SortType>(SortType.MOST_DATE);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const handleOptionClick = (option: SortType) => {

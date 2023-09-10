@@ -100,13 +100,4 @@ export const data: ProductType[] = [
         isUrgent: true,
         isLiked: false,
     },
-    {
-        id: 12,
-        name: 'Ürün 12',
-        imgUrl: 'https://images.pexels.com/photos/9582586/pexels-photo-9582586.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-        likes: 1,
-        updatedAt: new Date('2023-09-12'),
-        isUrgent: false,
-        isLiked: false,
-    },
 ];

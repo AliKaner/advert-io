@@ -74,7 +74,7 @@
     justify-content: center;
 
     .trash-icon {
-      color: $warningColor;
+      color: $primaryWarningColor;
       font-size: 1.2rem;
     }
 
@@ -101,21 +101,28 @@
       align-items: center;
 
       &:hover {
-        color: $warningColor;
+        color: $primaryWarningColor;
         transition-delay: 1s;
       }
 
       .button-icon {
+        position: relative;
         width: 100%;
         height: auto;
         display: flex;
         justify-content: center;
         align-items: center;
+
       }
     }
 
     .hover-button {
       opacity: 0;
+      transition: opacity 0.3s;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

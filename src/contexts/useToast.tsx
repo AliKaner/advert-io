@@ -1,4 +1,5 @@
 import { AppToast } from '@/components/common/AppToast';
+import { ToastType } from '@/components/common/AppToast/types';
 import React, {
     FC,
     ReactNode,
@@ -7,8 +8,13 @@ import React, {
     useState,
 } from 'react';
 
+interface ShowToastProps {
+    message: string;
+    type: ToastType;
+}
+
 interface ToastContextProps {
-    showToast: (message: string, isError:boolean) => void;
+    showToast: (params: ShowToastProps) => void;
 }
 
 interface ToastProviderProps {
@@ -19,11 +25,11 @@ const ToastContext = createContext<ToastContextProps>({ showToast: () => {} });
 
 export const ToastProvider: FC<ToastProviderProps> = ({ children }) => {
     const [toastMessage, setToastMessage] = useState<string | null>(null);
-    const [isError, setIsError] = useState<boolean>(false);
+    const [toastType, setToastType] = useState<ToastType>(ToastType.SUCCESS);
 
-    const showToast = (message: string, isError:boolean) => {
-        setToastMessage(message);
-        setIsError(isError);
+    const showToast = (params: ShowToastProps) => {
+        setToastMessage(params.message);
+        setToastType(params.type);
     };
 
     const closeToast = () => {
@@ -33,7 +39,11 @@ export const ToastProvider: FC<ToastProviderProps> = ({ children }) => {
     return (
         <ToastContext.Provider value={{ showToast }}>
             {toastMessage && (
-                <AppToast message={toastMessage} onClose={closeToast} isError={isError} />
+                <AppToast
+                    message={toastMessage}
+                    onClose={closeToast}
+                    type={toastType}
+                />
             )}
             {children}
         </ToastContext.Provider>

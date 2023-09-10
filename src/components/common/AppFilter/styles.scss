@@ -25,17 +25,17 @@
     list-style: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin: 0;
-    width: 150px;
+    width: fit-content;
     white-space: nowrap;
   }
 
   .filter-option {
-    padding: 5px 0px;
+    padding: 8px 8px;
     cursor: pointer;
     color: $secondaryTextColor;
     transition: background-color 0.2s ease;
     border-bottom: 1px solid #ccc;
-    text-align: center;
+    font-size: small;
   }
 
   .filter-option:last-child {

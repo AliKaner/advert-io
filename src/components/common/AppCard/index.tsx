@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBadge } from '../AppBadge';
-import { FaFire, FaHeart, FaRegHeart } from 'react-icons/fa';
+import { FaFire,FaRegHeart } from 'react-icons/fa';
 import { GoTrash, GoCalendar } from 'react-icons/go';
 import { CardProps } from './types';
 import { BadgeType } from '../AppBadge/types';
@@ -8,12 +8,23 @@ import { useProducts } from '@/contexts/useProducts';
 import { formatDate, isImage } from '@/shared/utils';
 import Image from 'next/image';
 import { PLACE_HOLDER_IMAGE } from '@/shared/constants';
+import { useToast } from '@/contexts/useToast';
+import { ToastType } from '../AppToast/types';
+import { AppFavButton } from '../AppFavButton';
 
 export function AppCard({ item }: CardProps) {
+    const { showToast } = useToast();
+    
     const { deleteProduct, likeProduct } = useProducts();
 
     const handleDeleteOnClick = () => {
         deleteProduct(item.id);
+
+        showToast({
+            message:
+                'İlan başarıyla silindi.',
+            type: ToastType.SUCCESS,
+        });
     };
 
     const handleLikeOnClick = () => {
@@ -57,11 +68,7 @@ export function AppCard({ item }: CardProps) {
                     className='item-card-button'
                 >
                     <div className='button-icon'>
-                        {item.isLiked ? (
-                            <FaHeart className='heart-icon-filled' />
-                        ) : (
-                            <FaRegHeart className='heart-icon' />
-                        )}
+                        <AppFavButton isLiked={item.isLiked}/>
                     </div>
                 </button>
                 <button

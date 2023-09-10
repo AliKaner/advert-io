@@ -7,7 +7,7 @@ import { SortType } from '@/db/service';
 import { AppPlaceholder } from '@/components/common/AppPlaceholder';
 import { AppNavigateButton } from '@/components/common/AppNavigateButton';
 import { useProducts } from '@/contexts/useProducts';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 
@@ -23,8 +23,6 @@ export const getServerSideProps: GetServerSideProps<{
 };
 
 function HomePage({ page }: { page: number }) {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-
     const { push } = useRouter();
 
     const {
@@ -32,6 +30,7 @@ function HomePage({ page }: { page: number }) {
         totalItems,
         getProducts,
         selectedSort,
+        isLoading,
     } = useProducts();
 
     const handleSortSelect = (selectedSortInput: SortType) => {
@@ -40,14 +39,16 @@ function HomePage({ page }: { page: number }) {
 
     const handlePageChange = (newPage: number) => {
         getProducts(newPage, selectedSort);
-        void push(`/page/${newPage}`);
+        push(`/page/${newPage}`);
     };
 
     useEffect(() => {
-        void getProducts(page, 'like');
-        setIsLoading(false);
+        const { totalProducts } = getProducts(page, selectedSort) || {};
+        if (!data.length && totalProducts && !isLoading) {
+            push('/');
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [isLoading,page]);
 
     return (
         <>
@@ -59,7 +60,7 @@ function HomePage({ page }: { page: number }) {
                 {totalItems < 1 && !isLoading ? (
                     <AppPlaceholder text='İlanlar Bitti Yenisini Ekleyin' />
                 ) : (
-                    data.length && (
+                    !!data.length && (
                         <>
                             <AppShowCase
                                 items={data}

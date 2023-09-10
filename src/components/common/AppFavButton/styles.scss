@@ -1,0 +1,34 @@
+$heart-background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+$heart-size: 64px;
+$animation-durations: 1s;
+$heart-background-position-end: -($heart-size * 28) 0;
+$heart-background-size: $heart-size * 29;
+
+.heart {
+  width: $heart-size;
+  height: $heart-size;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: $heart-background no-repeat 0 0;
+  background-size: $heart-background-size $heart-size;
+
+  &.animate {
+    animation: fave-heart $animation-durations steps(28);
+    animation-fill-mode: forwards;
+  }
+
+  &.faved {
+    background-position: $heart-background-position-end;
+  }
+}
+
+@keyframes fave-heart {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: $heart-background-position-end;
+  }
+}
