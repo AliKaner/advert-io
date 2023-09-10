@@ -57,7 +57,7 @@ function HomePage({ page }: { page: number }) {
             </Header>
             <Body>
                 {totalItems < 1 && !isLoading ? (
-                    <AppPlaceholder text='There are no products listed' />
+                    <AppPlaceholder text='İlanlar Bitti Yenisini Ekleyin' />
                 ) : (
                     data.length && (
                         <>
