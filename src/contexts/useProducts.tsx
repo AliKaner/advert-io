@@ -56,7 +56,7 @@ export const ProductProvider: React.FC<ProductProviderProps> = ({
 
             await DatabaseService.product.update(id, {
                 isLiked: !product.isLiked,
-                likes: product.likes + 1,
+                likes: product.isLiked ? product.likes - 1 : product.likes + 1,
             });
             void getProducts(currentPage, selectedSort);
         } catch (error) {

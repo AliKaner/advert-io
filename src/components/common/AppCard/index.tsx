@@ -5,7 +5,7 @@ import { GoTrash, GoCalendar } from 'react-icons/go';
 import { CardProps } from './types';
 import { BadgeType } from '../AppBadge/types';
 import { useProducts } from '@/contexts/useProducts';
-import { formatDate, isUrl } from '@/shared/utils';
+import { formatDate, isImage } from '@/shared/utils';
 import Image from 'next/image';
 import { PLACE_HOLDER_IMAGE } from '@/shared/constants';
 
@@ -31,7 +31,7 @@ export function AppCard({ item }: CardProps) {
             )}
             <Image
                 className='item-card-image'
-                src={isUrl(item.imgUrl) ? item.imgUrl : PLACE_HOLDER_IMAGE}
+                src={isImage(item.imgUrl) ? item.imgUrl : PLACE_HOLDER_IMAGE}
                 alt={item.name}
                 width={300}
                 height={240}

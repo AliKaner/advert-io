@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AppTitle } from '../AppTitle';
 import { useProducts } from '@/contexts/useProducts';
 import { useRouter } from 'next/router';
-import { isUrl } from '@/shared/utils';
+import { isImage } from '@/shared/utils';
 import { useToast } from '@/contexts/useToast';
 
 export function AppForm() {
@@ -27,7 +27,7 @@ export function AppForm() {
     };
 
     const handleSave = () => {
-        if (name === '' || !isUrl(imgUrl)) {
+        if (name === '' || !isImage(imgUrl)) {
             showToast(
                 'İlan Kaydedilemedi. Lüften Bilgilerinizi Kontrol Ediniz.',
                 true
@@ -45,7 +45,7 @@ export function AppForm() {
                 <AppTitle title='YENİ İLAN' subtitle='EKLE' />
             </div>
             <div className='form-field'>
-                <label htmlFor='name'>Name of Advert</label>
+                <label htmlFor='name'>İlan Başlığı</label>
                 <input
                     type='text'
                     id='name'
@@ -55,7 +55,7 @@ export function AppForm() {
                 />
             </div>
             <div className='form-field'>
-                <label htmlFor='imgUrl'>Image of Advert</label>
+                <label htmlFor='imgUrl'>İlan Kapak Görseli</label>
                 <input
                     type='text'
                     id='imgUrl'
@@ -65,7 +65,7 @@ export function AppForm() {
                 />
             </div>
             <div className='form-field-checkbox'>
-                <label htmlFor='isUrgent'>Is It Urgent?</label>
+                <label htmlFor='isUrgent'>Acil Mi?</label>
                 <input
                     type='checkbox'
                     id='isUrgent'
@@ -76,7 +76,7 @@ export function AppForm() {
             </div>
             <div className='add-form-button'>
                 <button className='save-button' onClick={handleSave}>
-                    Save
+                    Kaydet
                 </button>
             </div>
         </div>

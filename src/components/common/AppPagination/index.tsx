@@ -25,7 +25,7 @@ export function AppPagination({ totalItems, onPageChange }: PaginationProps) {
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={!canGoToPreviousPage}
                 >
-                    Prev
+                    Geri
                 </button>
 
                 {pageNumbers.map((pageNumber) => (
@@ -45,11 +45,11 @@ export function AppPagination({ totalItems, onPageChange }: PaginationProps) {
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={!canGoToNextPage}
                 >
-                    Next
+                    İleri
                 </button>
             </div>
             <span className='pagination-info'>
-                Page {currentPage} of {totalPages}
+                Sayfa {currentPage} / {totalPages}
             </span>
         </div>
     );

@@ -10,11 +10,10 @@ export const formatDate = (date: Date) => {
     return `${year}.${month}.${day} ${hours}:${minutes}`;
 };
 
-export const isUrl = (str: string) => {
+export const isImage = (str: string) => {
     try {
-        const url = new URL(str);
-
-        return url.protocol === 'http:' || url.protocol === 'https:';
+        const imagePattern = /.(jpeg|jpg|png|gif|bmp|tiff)/i;
+        return imagePattern.test(str);
     } catch (_) {
         return false;
     }
