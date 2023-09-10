@@ -1,0 +1,43 @@
+.showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.showcase-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .header-left {
+    flex: 1;
+  }
+
+  .header-right {
+    flex: 0; 
+    margin-bottom: 0;
+  }
+}
+
+.showcase-items {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  border-top: 1px solid $secondaryColor;
+  padding-top: 1rem;
+
+  @media (max-width: $SCREEN_XL) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: $SCREEN_MD) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $SCREEN_SM) {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,9 @@
+.logo {
+  margin-left: 2rem;
+  font-size: larger;
+  border-radius: 0.4rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

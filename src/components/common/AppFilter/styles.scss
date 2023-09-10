@@ -1,0 +1,53 @@
+.filter {
+  position: relative;
+  display: inline-block;
+  color: $secondaryColor;
+
+  .filter-toggle {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 5px;
+    cursor: pointer;
+    align-self: center;
+    display: flex;
+  }
+
+  .filter-options {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    width: 150px;
+    white-space: nowrap;
+  }
+
+  .filter-option {
+    padding: 5px 0px;
+    cursor: pointer;
+    color: $secondaryTextColor;
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+  }
+
+  .filter-option:last-child {
+    border-bottom: none;
+  }
+
+  .filter-option:hover {
+    background-color: #f0f0f0;
+  }
+
+  .filter-option-selected {
+    background-color: $selectedColor;
+    color: #fff;
+  }
+}

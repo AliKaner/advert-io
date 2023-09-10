@@ -1,0 +1,24 @@
+.fixed-toast {
+    position: fixed;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $primaryTextColor;
+    padding: 1rem 2rem;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+
+    .toast-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &.error-toast {
+        background-color: $warningColor;
+    }
+
+    &.success-toast {
+        background-color: $secondarySuccessColor;
+    }
+}

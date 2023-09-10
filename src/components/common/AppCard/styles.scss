@@ -1,0 +1,121 @@
+.item-card {
+  width: 20rem;
+  height: 16rem;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+
+  @media (max-width: $SCREEN_SM) {
+    grid-template-columns: 1fr;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+
+    .item-card-buttons {
+      .hover-button {
+        opacity: 1;
+      }
+    }
+  }
+
+  .item-card-image {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+  }
+
+  .item-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    margin: 0.1rem;
+    color: $secondaryTextColor;
+    margin-left: 1rem;
+
+    .item-detail-title {
+      margin: 0;
+      color: $primaryTextColor;
+      font-weight: normal;
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .item-detail-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-size: 0.8rem;
+
+      padding-bottom: 0.3rem;
+    }
+
+    .item-detail-icon {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      align-items: center;
+      font-size: 0.8rem;
+      margin-right: 0.2rem;
+    }
+  }
+
+  .item-card-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .trash-icon {
+      color: $warningColor;
+      font-size: 1.2rem;
+    }
+
+    .heart-icon {
+      &-filled {
+        color: $likeColor;
+        font-size: 1.2rem;
+      }
+
+      color: $secondaryColor;
+      font-size: 1.2rem;
+    }
+
+    .item-card-button {
+      width: 30px;
+      height: 30px;
+      background-color: $primaryColor;
+      color: white;
+      border: $secondaryColor;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        color: $warningColor;
+        transition-delay: 1s;
+      }
+
+      .button-icon {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .hover-button {
+      opacity: 0;
+    }
+  }
+}

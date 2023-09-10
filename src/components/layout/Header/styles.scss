@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  font-size: 2rem;
+  color: $primaryColor;
+  background-color: $secondaryColor;
+  padding: 0.4rem 0;
+}
