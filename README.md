@@ -3,29 +3,30 @@
 ## Videos
 
 ### Adding
-
-https://github.com/AliKaner/thecodebaseio/assets/53481701/2880a550-b13e-49e6-b7dd-fa57739bf08e
-
+https://github.com/AliKaner/thecodebaseio/assets/53481701/98d699d1-1f88-438b-a727-43098533346b
 ### Listing
-https://github.com/AliKaner/thecodebaseio/assets/53481701/d87942ca-bb31-423b-8be8-3c3693073fae
-
+https://github.com/AliKaner/thecodebaseio/assets/53481701/7d9dc5e3-6da1-4d68-b36f-1a0e838fedba
 ### Placeholder
-https://github.com/AliKaner/thecodebaseio/assets/53481701/ac2365a0-067b-482e-a0e1-f318e7ae7821
-
-
+https://github.com/AliKaner/thecodebaseio/assets/53481701/bf9af86e-35b8-42dc-98e3-5c61eba8d342
 
 ## Screenshots
 
 ### Home Page
-![Screenshot 2023-09-10 191309](https://github.com/AliKaner/thecodebaseio/assets/53481701/98e79353-43c4-40a2-9021-8af8df5ddffc)
+
+![Listing](https://github.com/AliKaner/thecodebaseio/assets/53481701/6968c5eb-fd76-4130-b766-18687ee3bd7a)
 
 ### Adding Page
-![Screenshot 2023-09-10 191333](https://github.com/AliKaner/thecodebaseio/assets/53481701/1ac15e93-df17-45e0-82a1-074ec9135d28)
+![Adding](https://github.com/AliKaner/thecodebaseio/assets/53481701/e97be769-8f3b-4333-b6ab-3dff8faeeb45)
+
 
 ### Placeholder
-![Screenshot 2023-09-10 191356](https://github.com/AliKaner/thecodebaseio/assets/53481701/46a48b32-b503-44bd-9787-65a33d587cd5)
+![placeholder](https://github.com/AliKaner/thecodebaseio/assets/53481701/55858204-8ae4-49ed-abbc-ce7697ae50e3)
 
 
+## Mobil
+![ListingMobile](https://github.com/AliKaner/thecodebaseio/assets/53481701/76cd9656-34f1-4594-bd8f-c096f47abb85)
+![AddingMobile](https://github.com/AliKaner/thecodebaseio/assets/53481701/0b9a960d-c7b9-4e4b-bb41-d9e02f2d0062)
+![placeholderMobil](https://github.com/AliKaner/thecodebaseio/assets/53481701/4b63d7de-2b86-4268-821f-3f534de9a57c)
 
 This is a standard Next.js application developed for product listing with favoriting and sorting functionalities.
 
