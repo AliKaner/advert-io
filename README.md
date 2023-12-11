@@ -1,5 +1,5 @@
 
-# addvert.io
+# advert.io
 ## Videos
 
 ### Adding
